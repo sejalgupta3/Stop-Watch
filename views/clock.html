@@ -1,0 +1,14 @@
+<div>
+	<span style="color:{{fontColor}};font-size:{{fontSize}}px" class="watch">{{clock1.min}} : {{clock1.second}} : {{clock1.mili}}</span>
+	<div>
+		<button type="button" class="btn btn-success {{buttonSize}} start" ng-click="startWatch()">
+			Start
+		</button>
+		<button type="button" class="btn btn-danger {{buttonSize}} stop" ng-click="stopWatch()" style="display:none">
+			Stop
+		</button>
+		<button type="button" class="btn btn-warning {{buttonSize}} reset" ng-click="resetWatch()">
+			Reset
+		</button>
+	</div>
+</div>

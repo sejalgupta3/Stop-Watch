@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Clock</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<style>
+	h1{
+		color: #3A9751;
+		font-weight: bold;
+		font-size: 60px;
+	}
+	h3{
+		color: #E86B8B;
+	}
+	.codeArea{
+		width:100%;
+	}
+	.generateCodeButton{
+		float:right;
+	}
+	
+	hr{
+		width: 100%;
+		height: 3px; 
+		background-color: #D6D0DA;
+	}
+</style>
+</head>
+<body ng-app="watchApp">
+	<div class="container">
+		<h1>Angular Stop Watch</h1>
+		<hr/>
+		<h4>This stop watch is very easy to integrate in your website. Just follow the steps below.</h4>
+		<ol>
+			<li>Choose the design for the stop watch and click Generate Code button.</li>
+			<li>Copy the generated code and paste it on the page you want the clock to be seen.</li>
+			<li>Download the Js file from here - 
+				<a href="files/clockScript.js" download="clockScript.js">
+					Download From Here
+					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+				</a>
+			</li>
+			<li>Include the JavaScript file in your application page</li>
+			<li>Include these Libraries: AngularJs, Bootstrap, JQuery</li>
+		</ol>
+		<br/>
+		<div ng-controller="clockCtrl">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+					  <label for="tColor">Choose Font-Color:</label>
+					  <input class="form-control jscolor" value="ab2567" id="tColor">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<label>Choose Button Size:</label>
+					<div>
+						<label class="radio-inline"><input type="radio" name="btnSize" value="btn-xs">Extra Small</label>
+						<label class="radio-inline"><input type="radio" name="btnSize" value="btn-sm">Small</label>
+						<label class="radio-inline"><input type="radio" name="btnSize" value="btn-md">Medium</label> 
+						<label class="radio-inline"><input type="radio" name="btnSize" value="btn-lg">Large</label>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<label for="tSize">Choose Font-size(px):</label>
+					<input type="text" class="form-control" id="tSize">
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<button type="button" class="btn btn-info btn-lg generateCodeButton" ng-click="changeClock()">
+					Generate Code
+				</button>
+			</div>
+			<div class="row">
+				<div stop-clock tsize="{{fontSize}}" tcolor="{{fontColor}}" bsize="{{buttonSize}}"></div>
+			</div>
+			<br>
+			<div class="row">
+				<h3>Stop Watch code:</h3>
+				<textarea lass="form-control" rows="3" class="codeArea">
+					<div ng-app="watchApp" stop-clock tsize="{{fontSize}}" tcolor="{{fontColor}}" bsize="{{buttonSize}}"></div>
+				</textarea>
+			</div>
+		</div>
+	</div>
+	<script>
+		var app = angular.module("watchApp", []);
+		app.controller('clockCtrl',function($scope){
+			$scope.buttonSize = 'btn-sm';
+			$scope.fontSize = '100';
+			$scope.fontColor = '#2B5CC1';
+			$scope.changeClock = function(){
+				if($("#bSize").val() != ""){
+					$scope.buttonSize = $('input[name=btnSize]:checked').val();
+				}
+				if($("#tSize").val() != ""){
+					$scope.fontSize = $("#tSize").val();
+				}
+				if($("#tColor").val() != ""){
+					$scope.fontColor = '#'+$("#tColor").val();
+				}
+			}
+		});
+	</script>
+	<script src="js/clockScript.js"></script>
+	<script src="js/jscolor.js"></script>
+</body>
+</html>
